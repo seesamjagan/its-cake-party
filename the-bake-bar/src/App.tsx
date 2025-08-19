@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <CartProvider>
-        <Router>
+        <Router basename="/the-bake-bar">
           <div className="page-container">
             <Navbar />
             <main>
