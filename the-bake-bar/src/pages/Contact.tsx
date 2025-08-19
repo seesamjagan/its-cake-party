@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
       icon: Phone,
       title: 'Phone',
       value: t('contact.info.phone'),
-      action: () => window.open('tel:+919876543210')
+      action: () => window.open('tel:+919551862527')
     },
     {
       icon: Mail,

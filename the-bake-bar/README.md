@@ -263,7 +263,7 @@ the-bake-bar/
 
 For support or questions about this project:
 - Email: hello@thebakebar.com
-- Phone: +91 98765 43210
+- Phone: +91 95518 62527
 
 ## 📄 License
 
