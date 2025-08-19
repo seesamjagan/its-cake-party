@@ -2,6 +2,12 @@
 
 A responsive, mobile-friendly website for The Bake Bar homemade bakery, built with React, Vite, and TailwindCSS.
 
+## 🌐 Live Website
+
+**Visit the live site:** [https://seesamjagan.github.io/the-bake-bar/](https://seesamjagan.github.io/the-bake-bar/)
+
+The website is deployed using GitHub Pages with automated deployment via GitHub Actions.
+
 ## 🌟 Features
 
 - **Responsive Design**: Optimized for mobile, tablet, and desktop
@@ -23,7 +29,7 @@ A responsive, mobile-friendly website for The Bake Bar homemade bakery, built wi
 - **Internationalization**: React i18next
 - **Icons**: Lucide React
 - **State Management**: React Context API
-- **Deployment**: Firebase Hosting
+- **Deployment**: GitHub Pages with GitHub Actions
 
 ## 🚀 Getting Started
 
@@ -131,47 +137,53 @@ Products are managed through `src/data/products.json`. Each product includes:
 
 ## 🚀 Deployment
 
-### Firebase Hosting
+### GitHub Pages with GitHub Actions
 
-1. Install Firebase CLI:
+The website is automatically deployed to GitHub Pages using GitHub Actions. The deployment workflow is triggered on every push to the `master` branch.
+
+#### Deployment Process:
+1. **Automated Build**: GitHub Actions workflow builds the project using `npm run build`
+2. **Deploy to Pages**: Built files are automatically deployed to GitHub Pages
+3. **Live Site**: Available at [https://seesamjagan.github.io/the-bake-bar/](https://seesamjagan.github.io/the-bake-bar/)
+
+#### Manual Deployment:
+1. Push changes to the `master` branch:
 ```bash
-npm install -g firebase-tools
+git add .
+git commit -m "Your commit message"
+git push origin master
 ```
 
-2. Login to Firebase:
-```bash
-firebase login
-```
-
-3. Initialize Firebase in your project:
-```bash
-firebase init hosting
-```
-
-4. Build the project:
-```bash
-npm run build
-```
-
-5. Deploy to Firebase:
-```bash
-firebase deploy
-```
+2. GitHub Actions will automatically:
+   - Install dependencies
+   - Build the project
+   - Deploy to GitHub Pages
 
 ### Build Configuration
 
-The project is configured for Firebase hosting with:
+The project is configured for GitHub Pages with:
 - Build output: `dist/` directory
-- SPA routing support
-- Cache headers for static assets
-- Gzip compression
+- Base path: `/the-bake-bar/` for GitHub Pages subdirectory
+- SPA routing support with React Router basename
+- Automated deployment via GitHub Actions workflow
+
+### GitHub Actions Workflow
+
+The deployment workflow (`.github/workflows/deploy.yml`) includes:
+- Node.js 18 setup
+- Dependency installation with npm cache
+- Build process
+- Automated GitHub Pages deployment
 
 ### Deployment Checklist
 
+- [x] ✅ GitHub Pages deployment configured
+- [x] ✅ GitHub Actions workflow setup
+- [x] ✅ SEO metadata and structured data added
+- [x] ✅ React Router basename configured for GitHub Pages
 - [ ] Update contact information (phone, email, address)
 - [ ] Add real product images to `src/assets/images/`
 - [ ] Replace logo placeholders with actual logos
-- [ ] Configure Firebase project
 - [ ] Test all functionality before deployment
 - [ ] Update social media links
 - [ ] Set up custom domain (optional)
