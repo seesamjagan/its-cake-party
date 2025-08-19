@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
   const handleDirectEmail = (): void => {
     const subject = `Contact from ${formData.name}`;
     const body = `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    const emailUrl = `mailto:hello@thebakebar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const emailUrl = `mailto:Jaganvinothini1993@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(emailUrl);
   };
 
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
       icon: Mail,
       title: 'Email',
       value: t('contact.info.email'),
-      action: () => window.open('mailto:hello@thebakebar.com')
+      action: () => window.open('mailto:Jaganvinothini1993@gmail.com')
     },
     {
       icon: Clock,

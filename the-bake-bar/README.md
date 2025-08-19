@@ -262,7 +262,7 @@ the-bake-bar/
 ## 📞 Support
 
 For support or questions about this project:
-- Email: hello@thebakebar.com
+- Email: Jaganvinothini1993@gmail.com
 - Phone: +91 95518 62527
 
 ## 📄 License

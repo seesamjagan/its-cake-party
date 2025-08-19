@@ -79,7 +79,7 @@ const Cart: React.FC = () => {
   const handleEmailSubmit = (): void => {
     const message = generateOrderMessage();
     const subject = `Order from ${customerInfo.name} - The Bake Bar`;
-    const emailUrl = `mailto:hello@thebakebar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    const emailUrl = `mailto:Jaganvinothini1993@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
     window.open(emailUrl);
 
     setIsSubmitting(true);
