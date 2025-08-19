@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Chocolate Cake",
+    "image": "images/chocolate-cake.jpg",
+    "description": "Rich and moist chocolate cake topped with creamy frosting.",
+    "quantity": "1 kg",
+    "price": 450,
+    "category": "cakes",
+    "featured": true,
+    "ingredients": ["chocolate", "flour", "eggs", "butter", "sugar"],
+    "allergens": ["gluten", "dairy", "eggs"]
+  },
+  {
+    "id": 2,
+    "name": "Strawberry Pastry",
+    "image": "images/strawberry-pastry.jpg",
+    "description": "Soft pastry layered with fresh cream and strawberries.",
+    "quantity": "1 piece",
+    "price": 80,
+    "category": "pastries",
+    "featured": true,
+    "ingredients": ["strawberry", "cream", "flour", "sugar"],
+    "allergens": ["gluten", "dairy"]
+  },
+  {
+    "id": 3,
+    "name": "Vanilla Cupcakes",
+    "image": "images/vanilla-cupcakes.jpg",
+    "description": "Fluffy vanilla cupcakes with buttercream frosting.",
+    "quantity": "6 pieces",
+    "price": 180,
+    "category": "cupcakes",
+    "featured": false,
+    "ingredients": ["vanilla", "flour", "butter", "sugar", "eggs"],
+    "allergens": ["gluten", "dairy", "eggs"]
+  },
+  {
+    "id": 4,
+    "name": "Blueberry Muffins",
+    "image": "images/blueberry-muffins.jpg",
+    "description": "Fresh blueberry muffins with a golden crispy top.",
+    "quantity": "4 pieces",
+    "price": 120,
+    "category": "muffins",
+    "featured": false,
+    "ingredients": ["blueberry", "flour", "butter", "sugar", "eggs"],
+    "allergens": ["gluten", "dairy", "eggs"]
+  },
+  {
+    "id": 5,
+    "name": "Red Velvet Cake",
+    "image": "images/red-velvet-cake.jpg",
+    "description": "Classic red velvet cake with cream cheese frosting.",
+    "quantity": "1 kg",
+    "price": 520,
+    "category": "cakes",
+    "featured": true,
+    "ingredients": ["cocoa", "flour", "buttermilk", "cream cheese", "sugar"],
+    "allergens": ["gluten", "dairy", "eggs"]
+  },
+  {
+    "id": 6,
+    "name": "Croissants",
+    "image": "images/croissants.jpg",
+    "description": "Buttery, flaky croissants perfect for breakfast.",
+    "quantity": "3 pieces",
+    "price": 90,
+    "category": "pastries",
+    "featured": false,
+    "ingredients": ["flour", "butter", "yeast", "milk"],
+    "allergens": ["gluten", "dairy"]
+  }
+]

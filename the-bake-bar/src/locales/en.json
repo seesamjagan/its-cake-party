@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "contact": "Contact",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "home": {
+    "title": "Welcome to The Bake Bar",
+    "subtitle": "Homemade Bakery",
+    "description": "Where every bite tells a story of warmth, love, and exceptional taste. Discover our handcrafted delights made with the finest ingredients.",
+    "featured": "Featured Products",
+    "cta": "Explore Products",
+    "about": "About Us",
+    "aboutText": "The Bake Bar is a family-owned bakery dedicated to creating the most delicious homemade treats. Every product is crafted with love and the finest ingredients."
+  },
+  "products": {
+    "title": "Our Products",
+    "categories": {
+      "all": "All",
+      "cakes": "Cakes",
+      "pastries": "Pastries",
+      "cupcakes": "Cupcakes",
+      "muffins": "Muffins"
+    },
+    "addToCart": "Add to Cart",
+    "price": "Price",
+    "quantity": "Quantity",
+    "ingredients": "Ingredients",
+    "allergens": "Allergens"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "item": "Item",
+    "quantity": "Quantity",
+    "price": "Price",
+    "total": "Total",
+    "remove": "Remove",
+    "update": "Update",
+    "checkout": "Submit Order",
+    "continueShopping": "Continue Shopping"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "address": "123 Bakery Street, Sweet City",
+      "phone": "+91 98765 43210",
+      "email": "hello@thebakebar.com",
+      "hours": "Mon-Sun: 8AM-8PM"
+    },
+    "social": "Follow Us"
+  },
+  "order": {
+    "title": "Order Details",
+    "customerInfo": "Customer Information",
+    "orderSummary": "Order Summary",
+    "submitVia": "Submit Order Via",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "success": "Order submitted successfully!",
+    "error": "Failed to submit order. Please try again."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No"
+  }
+}
