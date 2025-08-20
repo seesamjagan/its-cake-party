@@ -394,57 +394,111 @@ const Products: React.FC = () => {
 
                   {/* Product Info */}
                   <div className="product-info">
-                    <div className="product-header">
-                      <div>
-                        <h3 className="product-name">{product.name}</h3>
-                        <span className="product-category">{product.category}</span>
-                      </div>
-                      <div className="product-price">₹{product.price}</div>
-                    </div>
+                    {viewMode === 'list' ? (
+                      <>
+                        {/* Column 1: Name and Description */}
+                        <div className="info-column-main">
+                          <h3 className="product-name">{product.name}</h3>
+                          <span className="product-category">{product.category}</span>
+                          <p className="product-description">{product.description}</p>
+                        </div>
 
-                    <p className="product-description">{product.description}</p>
+                        {/* Column 2: Ingredients and Allergens */}
+                        <div className="info-column-details">
+                          <div className="product-tags">
+                            <div className="tags-label">Ingredients:</div>
+                            {product.ingredients.slice(0, 4).map((ingredient, index) => (
+                              <span key={index} className="ingredient-tag">
+                                {ingredient}
+                              </span>
+                            ))}
+                            {product.ingredients.length > 4 && (
+                              <span className="more-tags">+{product.ingredients.length - 4}</span>
+                            )}
+                          </div>
 
-                    <div className="product-meta">
-                      <div className="meta-item">
-                        <span className="meta-label">Quantity:</span>
-                        <span className="meta-value">{product.quantity}</span>
-                      </div>
-                    </div>
+                          {product.allergens && product.allergens.length > 0 && (
+                            <div className="allergens">
+                              <span className="allergen-label">Contains:</span>
+                              {product.allergens.map((allergen, index) => (
+                                <span key={index} className="allergen-tag">
+                                  {allergen}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
 
-                    {/* Ingredients */}
-                    <div className="product-tags">
-                      {product.ingredients.slice(0, 3).map((ingredient, index) => (
-                        <span key={index} className="ingredient-tag">
-                          {ingredient}
-                        </span>
-                      ))}
-                      {product.ingredients.length > 3 && (
-                        <span className="more-tags">+{product.ingredients.length - 3}</span>
-                      )}
-                    </div>
+                        {/* Column 3: Price, Quantity, Add to Cart */}
+                        <div className="info-column-actions">
+                          <div className="product-price">₹{product.price}</div>
+                          <div className="product-quantity">Qty: {product.quantity}</div>
+                          <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => handleAddToCart(product)}
+                            className="btn btn-primary add-to-cart compact"
+                          >
+                            <ShoppingCart size={16} />
+                            Add
+                          </motion.button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="product-header">
+                          <div>
+                            <h3 className="product-name">{product.name}</h3>
+                            <span className="product-category">{product.category}</span>
+                          </div>
+                          <div className="product-price">₹{product.price}</div>
+                        </div>
 
-                    {/* Allergens */}
-                    {product.allergens && product.allergens.length > 0 && (
-                      <div className="allergens">
-                        <span className="allergen-label">Contains:</span>
-                        {product.allergens.map((allergen, index) => (
-                          <span key={index} className="allergen-tag">
-                            {allergen}
-                          </span>
-                        ))}
-                      </div>
+                        <p className="product-description">{product.description}</p>
+
+                        <div className="product-meta">
+                          <div className="meta-item">
+                            <span className="meta-label">Quantity:</span>
+                            <span className="meta-value">{product.quantity}</span>
+                          </div>
+                        </div>
+
+                        {/* Ingredients */}
+                        <div className="product-tags">
+                          {product.ingredients.slice(0, 3).map((ingredient, index) => (
+                            <span key={index} className="ingredient-tag">
+                              {ingredient}
+                            </span>
+                          ))}
+                          {product.ingredients.length > 3 && (
+                            <span className="more-tags">+{product.ingredients.length - 3}</span>
+                          )}
+                        </div>
+
+                        {/* Allergens */}
+                        {product.allergens && product.allergens.length > 0 && (
+                          <div className="allergens">
+                            <span className="allergen-label">Contains:</span>
+                            {product.allergens.map((allergen, index) => (
+                              <span key={index} className="allergen-tag">
+                                {allergen}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Add to Cart Button */}
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => handleAddToCart(product)}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          <ShoppingCart size={18} />
+                          Add to Cart
+                        </motion.button>
+                      </>
                     )}
-
-                    {/* Add to Cart Button */}
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleAddToCart(product)}
-                      className={`btn btn-primary add-to-cart ${viewMode === 'list' ? 'compact' : ''}`}
-                    >
-                      <ShoppingCart size={18} />
-                      {viewMode === 'grid' ? 'Add to Cart' : 'Add'}
-                    </motion.button>
                   </div>
                 </motion.div>
               ))
