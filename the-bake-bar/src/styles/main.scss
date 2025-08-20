@@ -1985,6 +1985,20 @@ button {
       .dark & {
         background: linear-gradient(135deg, $bakery-pink, #ff9a9e);
       }
+
+      &.compact {
+        width: auto;
+        min-width: 5rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.875rem;
+        margin-top: 0;
+        flex-shrink: 0;
+
+        @include responsive(mobile) {
+          width: 100%;
+          min-width: auto;
+        }
+      }
     }
   }
 

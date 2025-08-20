@@ -440,10 +440,10 @@ const Products: React.FC = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleAddToCart(product)}
-                      className="btn btn-primary add-to-cart"
+                      className={`btn btn-primary add-to-cart ${viewMode === 'list' ? 'compact' : ''}`}
                     >
                       <ShoppingCart size={18} />
-                      Add to Cart
+                      {viewMode === 'grid' ? 'Add to Cart' : 'Add'}
                     </motion.button>
                   </div>
                 </motion.div>
