@@ -11,6 +11,7 @@ import {
   Twitter,
   Heart
 } from 'lucide-react';
+import logoImage from '../assets/images/logo.png';
 
 interface SocialLink {
   icon: React.ComponentType<{ size?: number }>;
@@ -53,7 +54,7 @@ const Footer: React.FC = () => {
             >
               <div className="footer-logo">
                 <div className="logo-icon">
-                  <span>B</span>
+                  <img src={logoImage} alt="The Bake Bar Logo" className="logo-image" />
                 </div>
                 <div className="logo-text">
                   <div className="title">The Bake Bar</div>

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, Star, Award, Users, Clock } from 'lucide-react';
 import { Product } from '../types';
 import productsData from '../data/products.json';
+import logoImage from '../assets/images/logo.png';
 
 interface Stat {
   icon: React.ComponentType<{ size?: number }>;
@@ -78,7 +79,7 @@ const Home: React.FC = () => {
             animate="animate"
             className="hero-logo"
           >
-            <span>B</span>
+            <img src={logoImage} alt="The Bake Bar Logo" className="hero-logo-image" />
           </motion.div>
 
           <motion.h1
