@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { CustomerInfo } from '../types';
+import { COMPANY_INFO, getWhatsAppUrl, getEmailUrl } from '../config/company';
 
 const Cart: React.FC = () => {
   const { t } = useTranslation();
@@ -56,15 +57,14 @@ const Cart: React.FC = () => {
     });
 
     message += `💰 *Total Amount: ₹${getCartTotal()}*\n\n`;
-    message += `Thank you for choosing The Bake Bar! 🧁`;
+    message += `Thank you for choosing ${COMPANY_INFO.name}! 🧁`;
 
     return message;
   };
 
   const handleWhatsAppSubmit = (): void => {
     const message = generateOrderMessage();
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919551862527?text=${encodedMessage}`;
+    const whatsappUrl = getWhatsAppUrl(message);
     window.open(whatsappUrl, '_blank');
 
     setIsSubmitting(true);
@@ -78,8 +78,8 @@ const Cart: React.FC = () => {
 
   const handleEmailSubmit = (): void => {
     const message = generateOrderMessage();
-    const subject = `Order from ${customerInfo.name} - The Bake Bar`;
-    const emailUrl = `mailto:Jaganvinothini1993@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    const subject = `Order from ${customerInfo.name} - ${COMPANY_INFO.name}`;
+    const emailUrl = getEmailUrl(subject, message);
     window.open(emailUrl);
 
     setIsSubmitting(true);

@@ -15,6 +15,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { ContactFormData } from '../types';
+import { COMPANY_INFO, getEmailUrl, getPhoneUrl, getMapsUrl, getWhatsAppUrl } from '../config/company';
 
 interface ContactInfoItem {
   icon: React.ComponentType<{ size?: number }>;
@@ -66,15 +67,14 @@ const Contact: React.FC = () => {
 
   const handleWhatsApp = (): void => {
     const message = `Hi! I'm ${formData.name}. ${formData.message}`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodedMessage}`;
+    const whatsappUrl = getWhatsAppUrl(message);
     window.open(whatsappUrl, '_blank');
   };
 
   const handleDirectEmail = (): void => {
     const subject = `Contact from ${formData.name}`;
     const body = `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    const emailUrl = `mailto:Jaganvinothini1993@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const emailUrl = getEmailUrl(subject, body);
     window.open(emailUrl);
   };
 
@@ -82,25 +82,25 @@ const Contact: React.FC = () => {
     {
       icon: MapPin,
       title: 'Address',
-      value: t('contact.info.address'),
-      action: () => window.open('https://maps.google.com', '_blank')
+      value: t('contact.info.address', { address: COMPANY_INFO.contact.address.full }),
+      action: () => window.open(getMapsUrl(), '_blank')
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: t('contact.info.phone'),
-      action: () => window.open('tel:+919551862527')
+      value: t('contact.info.phone', { phone: COMPANY_INFO.contact.phone }),
+      action: () => window.open(getPhoneUrl())
     },
     {
       icon: Mail,
       title: 'Email',
-      value: t('contact.info.email'),
-      action: () => window.open('mailto:Jaganvinothini1993@gmail.com')
+      value: t('contact.info.email', { email: COMPANY_INFO.contact.email }),
+      action: () => window.open(getEmailUrl())
     },
     {
       icon: Clock,
       title: 'Hours',
-      value: t('contact.info.hours'),
+      value: t('contact.info.hours', { hours: COMPANY_INFO.contact.hours }),
       action: null
     }
   ];
@@ -109,25 +109,25 @@ const Contact: React.FC = () => {
     {
       icon: Facebook,
       name: 'Facebook',
-      url: 'https://facebook.com/thebakebar',
+      url: COMPANY_INFO.social.facebook,
       color: 'facebook'
     },
     {
       icon: Instagram,
       name: 'Instagram',
-      url: 'https://instagram.com/thebakebar',
+      url: COMPANY_INFO.social.instagram,
       color: 'instagram'
     },
     {
       icon: Twitter,
       name: 'Twitter',
-      url: 'https://twitter.com/thebakebar',
+      url: COMPANY_INFO.social.twitter,
       color: 'twitter'
     },
     {
       icon: MessageCircle,
       name: 'WhatsApp',
-      url: 'https://wa.me/919876543210',
+      url: COMPANY_INFO.social.whatsapp,
       color: 'whatsapp'
     }
   ];
@@ -237,7 +237,7 @@ const Contact: React.FC = () => {
                   Interactive Map Coming Soon
                 </p>
                 <p className="map-address">
-                  123 Bakery Street, Sweet City
+                  {COMPANY_INFO.contact.address.full}
                 </p>
               </div>
             </motion.div>

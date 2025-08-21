@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, Star, Award, Users, Clock } from 'lucide-react';
 import { Product } from '../types';
 import productsData from '../data/products.json';
+import { COMPANY_INFO } from '../config/company';
 import logoImage from '../assets/images/logo.png';
 
 interface Stat {
@@ -79,21 +80,21 @@ const Home: React.FC = () => {
             animate="animate"
             className="hero-logo"
           >
-            <img src={logoImage} alt="The Bake Bar Logo" className="hero-logo-image" />
+            <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="hero-logo-image" />
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
             className="hero-title"
           >
-            {t('home.title')}
+            {t('home.title', { companyName: COMPANY_INFO.name })}
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="hero-subtitle"
           >
-            {t('home.subtitle')}
+            {t('home.subtitle', { tagline: COMPANY_INFO.tagline })}
           </motion.p>
 
           <motion.p
@@ -261,7 +262,7 @@ const Home: React.FC = () => {
                 {t('home.about')}
               </h2>
               <p style={{ fontSize: '1.125rem', lineHeight: '1.75', marginBottom: '1.5rem', color: '#374151' }}>
-                {t('home.aboutText')}
+                {t('home.aboutText', { companyName: COMPANY_INFO.name })}
               </p>
               <p style={{ color: '#6b7280', lineHeight: '1.75' }}>
                 From our signature chocolate cakes to delicate pastries, every item in our bakery

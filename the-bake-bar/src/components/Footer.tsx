@@ -11,6 +11,7 @@ import {
   Twitter,
   Heart
 } from 'lucide-react';
+import { COMPANY_INFO } from '../config/company';
 import logoImage from '../assets/images/logo.png';
 
 interface SocialLink {
@@ -28,16 +29,16 @@ const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   const socialLinks: SocialLink[] = [
-    { icon: Facebook, href: '#', name: 'Facebook' },
-    { icon: Instagram, href: '#', name: 'Instagram' },
-    { icon: Twitter, href: '#', name: 'Twitter' },
+    { icon: Facebook, href: COMPANY_INFO.social.facebook, name: 'Facebook' },
+    { icon: Instagram, href: COMPANY_INFO.social.instagram, name: 'Instagram' },
+    { icon: Twitter, href: COMPANY_INFO.social.twitter, name: 'Twitter' },
   ];
 
   const contactInfo: ContactInfo[] = [
-    { icon: MapPin, text: t('contact.info.address') },
-    { icon: Phone, text: t('contact.info.phone') },
-    { icon: Mail, text: t('contact.info.email') },
-    { icon: Clock, text: t('contact.info.hours') },
+    { icon: MapPin, text: COMPANY_INFO.contact.address.full },
+    { icon: Phone, text: COMPANY_INFO.contact.phone },
+    { icon: Mail, text: COMPANY_INFO.contact.email },
+    { icon: Clock, text: COMPANY_INFO.contact.hours },
   ];
 
   return (
@@ -54,15 +55,15 @@ const Footer: React.FC = () => {
             >
               <div className="footer-logo">
                 <div className="logo-icon">
-                  <img src={logoImage} alt="The Bake Bar Logo" className="logo-image" />
+                  <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
                 </div>
                 <div className="logo-text">
-                  <div className="title">The Bake Bar</div>
-                  <div className="subtitle">Homemade Bakery</div>
+                  <div className="title">{COMPANY_INFO.name}</div>
+                  <div className="subtitle">{COMPANY_INFO.tagline}</div>
                 </div>
               </div>
               <p className="footer-description">
-                {t('home.aboutText')}
+                {t('home.aboutText', { companyName: COMPANY_INFO.name })}
               </p>
               <div className="social-links">
                 {socialLinks.map((social) => {
@@ -145,10 +146,10 @@ const Footer: React.FC = () => {
             className="footer-bottom-content"
           >
             <p className="copyright">
-              Made with <Heart size={16} className="heart" /> by The Bake Bar Team
+              Made with <Heart size={16} className="heart" /> by {COMPANY_INFO.name} Team
             </p>
             <p className="copyright">
-              © 2024 The Bake Bar. All rights reserved.
+              © 2024 {COMPANY_INFO.name}. All rights reserved.
             </p>
           </motion.div>
         </div>

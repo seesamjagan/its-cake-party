@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
+import { COMPANY_INFO } from '../config/company';
 import logoImage from '../assets/images/logo.png';
 
 interface NavItem {
@@ -66,11 +67,11 @@ const Navbar: React.FC = () => {
               className="logo-container"
             >
               <div className="logo-icon">
-                <img src={logoImage} alt="The Bake Bar Logo" className="logo-image" />
+                <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
               </div>
               <div className="logo-text">
-                <div className="logo-title">The Bake Bar</div>
-                <div className="logo-subtitle">Homemade Bakery</div>
+                <div className="logo-title">{COMPANY_INFO.name}</div>
+                <div className="logo-subtitle">{COMPANY_INFO.tagline}</div>
               </div>
             </motion.div>
           </Link>

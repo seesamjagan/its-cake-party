@@ -8,13 +8,13 @@
     "theme": "Theme"
   },
   "home": {
-    "title": "Welcome to The Bake Bar",
-    "subtitle": "Homemade Bakery",
+    "title": "Welcome to {{companyName}}",
+    "subtitle": "{{tagline}}",
     "description": "Where every bite tells a story of warmth, love, and exceptional taste. Discover our handcrafted delights made with the finest ingredients.",
     "featured": "Featured Products",
     "cta": "Explore Products",
     "about": "About Us",
-    "aboutText": "The Bake Bar is a family-owned bakery dedicated to creating the most delicious homemade treats. Every product is crafted with love and the finest ingredients."
+    "aboutText": "{{companyName}} is a family-owned bakery dedicated to creating the most delicious homemade treats. Every product is crafted with love and the finest ingredients."
   },
   "products": {
     "title": "Our Products",
@@ -54,10 +54,10 @@
       "send": "Send Message"
     },
     "info": {
-      "address": "123 Bakery Street, Sweet City",
-      "phone": "+91 95518 62527",
-      "email": "Jaganvinothini1993@gmail.com",
-      "hours": "Mon-Sun: 8AM-8PM"
+      "address": "{{address}}",
+      "phone": "{{phone}}",
+      "email": "{{email}}",
+      "hours": "{{hours}}"
     },
     "social": "Follow Us"
   },
