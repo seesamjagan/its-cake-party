@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={toggleTheme}
               className="control-btn theme-btn"
-              aria-label="Toggle theme"
+              aria-label={t('common.toggleTheme')}
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -138,7 +138,7 @@ const Navbar: React.FC = () => {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={toggleLanguage}
                 className={`control-btn language-btn ${isLanguageOpen ? 'active' : ''}`}
-                aria-label="Change language"
+                aria-label={t('common.changeLanguage')}
               >
                 <Globe size={20} />
               </motion.button>

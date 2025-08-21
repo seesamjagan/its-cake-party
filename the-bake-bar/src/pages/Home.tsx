@@ -56,10 +56,10 @@ const Home: React.FC = () => {
   };
 
   const stats: Stat[] = [
-    { icon: Users, number: '20+', label: 'Happy Customers' },
-    { icon: Award, number: '50+', label: 'Recipes' },
-    { icon: Star, number: '4.9', label: 'Rating' },
-    { icon: Clock, number: '2', label: 'Years Experience' },
+    { icon: Users, number: '20+', label: t('home.stats.customers') },
+    { icon: Award, number: '50+', label: t('home.stats.recipes') },
+    { icon: Star, number: '4.9', label: t('home.stats.rating') },
+    { icon: Clock, number: '2', label: t('home.stats.experience') },
   ];
 
   return (
@@ -182,7 +182,7 @@ const Home: React.FC = () => {
               {t('home.featured')}
             </h2>
             <p className="section-description">
-              Discover our most loved creations, crafted with passion and the finest ingredients
+              {t('common.featuredDescription')}
             </p>
           </motion.div>
 
@@ -240,7 +240,7 @@ const Home: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="btn btn-primary"
               >
-                View All Products
+                {t('common.viewAllProducts')}
                 <ChevronRight size={20} />
               </motion.button>
             </Link>

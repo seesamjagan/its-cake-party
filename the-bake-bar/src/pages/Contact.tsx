@@ -126,7 +126,7 @@ const Contact: React.FC = () => {
     },
     {
       icon: MessageCircle,
-      name: 'WhatsApp',
+      name: t('contact.socialMedia.whatsapp'),
       url: COMPANY_INFO.social.whatsapp,
       color: 'whatsapp'
     }
@@ -153,20 +153,20 @@ const Contact: React.FC = () => {
 
   const faqs: FAQ[] = [
     {
-      question: "What are your operating hours?",
-      answer: "We're open Monday to Sunday, 8:00 AM to 8:00 PM. We're here to serve you fresh baked goods every day!"
+      question: t('contact.faq.questions.hours.question'),
+      answer: t('contact.faq.questions.hours.answer')
     },
     {
-      question: "Do you take custom orders?",
-      answer: "Yes! We love creating custom cakes and treats for special occasions. Contact us at least 48 hours in advance."
+      question: t('contact.faq.questions.custom.question'),
+      answer: t('contact.faq.questions.custom.answer')
     },
     {
-      question: "Do you offer delivery?",
-      answer: "Currently, we offer pickup only. However, we're working on delivery services coming soon!"
+      question: t('contact.faq.questions.delivery.question'),
+      answer: t('contact.faq.questions.delivery.answer')
     },
     {
-      question: "Are your products suitable for vegetarians?",
-      answer: "Most of our products are vegetarian-friendly. Check product descriptions for specific dietary information."
+      question: t('contact.faq.questions.vegetarian.question'),
+      answer: t('contact.faq.questions.vegetarian.answer')
     }
   ];
 

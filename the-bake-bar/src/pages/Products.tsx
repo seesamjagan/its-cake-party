@@ -108,10 +108,10 @@ const Products: React.FC = () => {
   ];
 
   const sortOptions = [
-    { value: 'featured', label: 'Featured First' },
-    { value: 'name', label: 'Name A-Z' },
-    { value: 'price-low', label: 'Price: Low to High' },
-    { value: 'price-high', label: 'Price: High to Low' },
+    { value: 'featured', label: t('products.sort.featured') },
+    { value: 'name', label: t('products.sort.nameAZ') },
+    { value: 'price-low', label: t('products.sort.priceLow') },
+    { value: 'price-high', label: t('products.sort.priceHigh') },
   ];
 
   const handleAddToCart = (product: Product): void => {
@@ -171,7 +171,7 @@ const Products: React.FC = () => {
             <div className="loading-ring"></div>
           </div>
           <p style={{ marginTop: '2rem', fontSize: '1.125rem', color: '#8B4513' }}>
-            {t('common.loading')} our delicious products...
+            {t('common.loading')} {t('products.loading')}
           </p>
         </div>
       </div>
@@ -192,11 +192,11 @@ const Products: React.FC = () => {
             {t('products.title')}
           </h1>
           <p className="page-description">
-            Discover our handcrafted delights made with love and the finest ingredients
+            {t('products.subtitle')}
           </p>
         </motion.div>
 
-        {/* Enhanced Filters */}
+        {/* Enhanced {t('products.filters')} */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -210,7 +210,7 @@ const Products: React.FC = () => {
               <Search className="search-icon" size={20} />
               <input
                 type="text"
-                placeholder="Search products, ingredients..."
+                placeholder={t('products.search')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
@@ -255,11 +255,11 @@ const Products: React.FC = () => {
               className={`filter-toggle ${showFilters ? 'active' : ''}`}
             >
               <SlidersHorizontal size={18} />
-              Filters
+              {t('products.filters')}
             </button>
           </div>
 
-          {/* Expandable Filters */}
+          {/* Expandable {t('products.filters')} */}
           <AnimatePresence>
             {showFilters && (
               <motion.div
@@ -269,9 +269,9 @@ const Products: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="expandable-filters"
               >
-                {/* Categories */}
+                {/* t('products.categories.title') */}
                 <div className="filter-section">
-                  <h4>Categories</h4>
+                  <h4>{t('products.categories.title')}</h4>
                   <div className="category-pills">
                     {categories.map((category) => (
                       <button
@@ -285,9 +285,9 @@ const Products: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Price Range */}
+                {/* t('products.priceRange.title') */}
                 <div className="filter-section">
-                  <h4>Price Range</h4>
+                  <h4>{t('products.priceRange.title')}</h4>
                   <div className="price-range">
                     <input
                       type="range"
@@ -315,7 +315,7 @@ const Products: React.FC = () => {
           transition={{ delay: 0.4 }}
           className="results-info"
         >
-          <p>Showing {filteredProducts.length} of {products.length} products</p>
+          <p>{t('products.results.showing', { count: filteredProducts.length, total: products.length })}</p>
         </motion.div>
 
         {/* Products Grid/List */}
@@ -335,8 +335,8 @@ const Products: React.FC = () => {
                 className="no-products"
               >
                 <div className="no-products-icon">🔍</div>
-                <h3>No products found</h3>
-                <p>Try adjusting your filters or search terms</p>
+                <h3>{t('products.results.noProducts')}</h3>
+                <p>{t('products.results.noProductsDesc')}</p>
                 <button
                   onClick={() => {
                     setSelectedCategory('all');
@@ -345,7 +345,7 @@ const Products: React.FC = () => {
                   }}
                   className="btn btn-secondary"
                 >
-                  Clear Filters
+                  {t('products.results.clearFilters')}
                 </button>
               </motion.div>
             ) : (
@@ -380,7 +380,7 @@ const Products: React.FC = () => {
                     {product.featured && (
                       <div className="featured-badge">
                         <Star size={12} fill="currentColor" />
-                        Featured
+                        {t('products.labels.featured')}
                       </div>
                     )}
 
@@ -406,7 +406,7 @@ const Products: React.FC = () => {
                         {/* Column 2: Ingredients and Allergens */}
                         <div className="info-column-details">
                           <div className="product-tags">
-                            <div className="tags-label">Ingredients:</div>
+                            <div className="tags-label">{t('products.labels.ingredients')}</div>
                             {product.ingredients.slice(0, 4).map((ingredient, index) => (
                               <span key={index} className="ingredient-tag">
                                 {ingredient}
@@ -419,7 +419,7 @@ const Products: React.FC = () => {
 
                           {product.allergens && product.allergens.length > 0 && (
                             <div className="allergens">
-                              <span className="allergen-label">Contains:</span>
+                              <span className="allergen-label">{t('products.labels.contains')}</span>
                               {product.allergens.map((allergen, index) => (
                                 <span key={index} className="allergen-tag">
                                   {allergen}
@@ -429,10 +429,10 @@ const Products: React.FC = () => {
                           )}
                         </div>
 
-                        {/* Column 3: Price, Quantity, Add to Cart */}
+                        {/* Column 3: Price, Quantity, {t('products.buttons.addToCart')} */}
                         <div className="info-column-actions">
                           <div className="product-price">₹{product.price}</div>
-                          <div className="product-quantity">Qty: {product.quantity}</div>
+                          <div className="product-quantity">{t('products.labels.qty')}: {product.quantity}</div>
                           <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -440,7 +440,7 @@ const Products: React.FC = () => {
                             className="btn btn-primary add-to-cart compact"
                           >
                             <ShoppingCart size={16} />
-                            Add
+                            {t('products.buttons.add')}
                           </motion.button>
                         </div>
                       </>
@@ -458,7 +458,7 @@ const Products: React.FC = () => {
 
                         <div className="product-meta">
                           <div className="meta-item">
-                            <span className="meta-label">Quantity:</span>
+                            <span className="meta-label">{t('products.labels.quantity')}:</span>
                             <span className="meta-value">{product.quantity}</span>
                           </div>
                         </div>
@@ -478,7 +478,7 @@ const Products: React.FC = () => {
                         {/* Allergens */}
                         {product.allergens && product.allergens.length > 0 && (
                           <div className="allergens">
-                            <span className="allergen-label">Contains:</span>
+                            <span className="allergen-label">{t('products.labels.contains')}</span>
                             {product.allergens.map((allergen, index) => (
                               <span key={index} className="allergen-tag">
                                 {allergen}
@@ -487,7 +487,7 @@ const Products: React.FC = () => {
                           </div>
                         )}
 
-                        {/* Add to Cart Button */}
+                        {/* {t('products.buttons.addToCart')} Button */}
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -495,7 +495,7 @@ const Products: React.FC = () => {
                           className="btn btn-primary add-to-cart"
                         >
                           <ShoppingCart size={18} />
-                          Add to Cart
+                          {t('products.buttons.addToCart')}
                         </motion.button>
                       </>
                     )}

@@ -14,22 +14,54 @@
     "featured": "Featured Products",
     "cta": "Explore Products",
     "about": "About Us",
-    "aboutText": "{{companyName}} is a family-owned bakery dedicated to creating the most delicious homemade treats. Every product is crafted with love and the finest ingredients."
+    "aboutText": "{{companyName}} is a family-owned bakery dedicated to creating the most delicious homemade treats. Every product is crafted with love and the finest ingredients.",
+    "stats": {
+      "customers": "Happy Customers",
+      "recipes": "Recipes",
+      "rating": "Rating",
+      "experience": "Years Experience"
+    }
   },
   "products": {
     "title": "Our Products",
+    "subtitle": "Discover our handcrafted delights made with love and the finest ingredients",
+    "search": "Search products, ingredients...",
+    "filters": "Filters",
+    "sort": {
+      "featured": "Featured First",
+      "nameAZ": "Name A-Z",
+      "priceHigh": "Price: High to Low",
+      "priceLow": "Price: Low to High"
+    },
     "categories": {
       "all": "All",
       "cakes": "Cakes",
       "pastries": "Pastries",
       "cupcakes": "Cupcakes",
-      "muffins": "Muffins"
+      "muffins": "Muffins",
+      "title": "Categories"
     },
-    "addToCart": "Add to Cart",
-    "price": "Price",
-    "quantity": "Quantity",
-    "ingredients": "Ingredients",
-    "allergens": "Allergens"
+    "priceRange": {
+      "title": "Price Range"
+    },
+    "results": {
+      "showing": "Showing {{count}} of {{total}} products",
+      "noProducts": "No products found",
+      "noProductsDesc": "Try adjusting your filters or search terms",
+      "clearFilters": "Clear Filters"
+    },
+    "labels": {
+      "featured": "Featured",
+      "ingredients": "Ingredients:",
+      "contains": "Contains:",
+      "quantity": "Quantity:",
+      "qty": "Qty:"
+    },
+    "buttons": {
+      "add": "Add",
+      "addToCart": "Add to Cart"
+    },
+    "loading": "our delicious products..."
   },
   "cart": {
     "title": "Shopping Cart",
@@ -51,15 +83,51 @@
       "email": "Email Address",
       "phone": "Phone Number",
       "message": "Message",
-      "send": "Send Message"
+      "send": "Send Message",
+      "title": "Send us a message",
+      "success": "Message sent successfully!"
     },
     "info": {
       "address": "{{address}}",
       "phone": "{{phone}}",
       "email": "{{email}}",
-      "hours": "{{hours}}"
+      "hours": "{{hours}}",
+      "titles": {
+        "address": "Address",
+        "phone": "Phone",
+        "email": "Email",
+        "hours": "Hours"
+      }
     },
-    "social": "Follow Us"
+    "social": "Follow Us",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "whatsapp": "WhatsApp"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers to common questions about our bakery",
+      "questions": {
+        "hours": {
+          "question": "What are your operating hours?",
+          "answer": "We're open Monday to Sunday, 8:00 AM to 8:00 PM. We're here to serve you fresh baked goods every day!"
+        },
+        "custom": {
+          "question": "Do you take custom orders?",
+          "answer": "Yes! We love creating custom cakes and treats for special occasions. Contact us at least 48 hours in advance."
+        },
+        "delivery": {
+          "question": "Do you offer delivery?",
+          "answer": "Currently, we offer pickup only. However, we're working on delivery services coming soon!"
+        },
+        "vegetarian": {
+          "question": "Are your products suitable for vegetarians?",
+          "answer": "Most of our products are vegetarian-friendly. Check product descriptions for specific dietary information."
+        }
+      }
+    }
   },
   "order": {
     "title": "Order Details",
@@ -79,6 +147,18 @@
     "save": "Save",
     "cancel": "Cancel",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "quickLinks": "Quick Links",
+    "toggleTheme": "Toggle theme",
+    "changeLanguage": "Change language",
+    "specialOffers": "Special Offers",
+    "newsletterText": "Subscribe to our newsletter for exclusive deals and fresh bakery updates!",
+    "madeWithLove": "Made with {{heart}} by {{companyName}} Team",
+    "copyright": "© 2024 {{companyName}}. All rights reserved.",
+    "craftedWithLove": "Crafted with Love",
+    "viewAllProducts": "View All Products",
+    "featuredDescription": "Discover our most loved creations, crafted with passion and the finest ingredients",
+    "aboutDescription": "From our signature chocolate cakes to delicate pastries, every item in our bakery tells a story of tradition, innovation, and pure deliciousness.",
+    "mapPlaceholder": "Interactive Map Coming Soon"
   }
 }
