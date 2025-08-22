@@ -34,7 +34,7 @@ const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 2500]);
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -99,13 +99,29 @@ const Products: React.FC = () => {
     setFilteredProducts(filtered);
   }, [products, selectedCategory, searchTerm, sortBy, priceRange]);
 
-  const categories: Category[] = [
-    { id: 'all', name: t('products.categories.all') },
-    { id: 'cakes', name: t('products.categories.cakes') },
-    { id: 'pastries', name: t('products.categories.pastries') },
-    { id: 'cupcakes', name: t('products.categories.cupcakes') },
-    { id: 'muffins', name: t('products.categories.muffins') },
-  ];
+  // Dynamically generate categories from products data
+  const getUniqueCategories = (): Category[] => {
+    const uniqueCategories = [...new Set((productsData as Product[]).map(product => product.category))];
+    const categories: Category[] = [
+      { id: 'all', name: t('products.categories.all') }
+    ];
+
+    uniqueCategories.forEach(categoryId => {
+      const translationKey = `products.categories.${categoryId}`;
+      // Check if translation exists, fallback to categoryId if not
+      const translatedName = t(translationKey);
+      const displayName = translatedName !== translationKey ? translatedName : categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
+
+      categories.push({
+        id: categoryId,
+        name: displayName
+      });
+    });
+
+    return categories;
+  };
+
+  const categories: Category[] = getUniqueCategories();
 
   const sortOptions = [
     { value: 'featured', label: t('products.sort.featured') },
@@ -292,7 +308,7 @@ const Products: React.FC = () => {
                     <input
                       type="range"
                       min="0"
-                      max="1000"
+                      max="2500"
                       value={priceRange[1]}
                       onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
                       className="price-slider"
@@ -341,7 +357,7 @@ const Products: React.FC = () => {
                   onClick={() => {
                     setSelectedCategory('all');
                     setSearchTerm('');
-                    setPriceRange([0, 1000]);
+                    setPriceRange([0, 2500]);
                   }}
                   className="btn btn-secondary"
                 >
@@ -385,9 +401,12 @@ const Products: React.FC = () => {
                     )}
 
                     <div className="product-emoji">
+                      {product.category === 'brownies' && '🍫'}
                       {product.category === 'cakes' && '🎂'}
-                      {product.category === 'pastries' && '🥐'}
+                      {product.category === 'desserts' && '🍮'}
                       {product.category === 'cupcakes' && '🧁'}
+                      {product.category === 'cookies' && '🍪'}
+                      {product.category === 'pastries' && '🥐'}
                       {product.category === 'muffins' && '🧈'}
                     </div>
                   </div>

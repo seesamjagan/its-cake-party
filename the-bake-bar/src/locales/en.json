@@ -35,9 +35,12 @@
     },
     "categories": {
       "all": "All",
+      "brownies": "Brownies",
       "cakes": "Cakes",
-      "pastries": "Pastries",
+      "desserts": "Desserts",
       "cupcakes": "Cupcakes",
+      "cookies": "Cookies",
+      "pastries": "Pastries",
       "muffins": "Muffins",
       "title": "Categories"
     },
