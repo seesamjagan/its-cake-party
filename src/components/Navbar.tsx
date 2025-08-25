@@ -16,7 +16,6 @@ import {
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import { COMPANY_INFO } from '../config/company';
-import logoImage from '../assets/images/logo.png';
 
 interface NavItem {
   path: string;
@@ -67,7 +66,7 @@ const Navbar: React.FC = () => {
               className="logo-container"
             >
               <div className="logo-icon">
-                <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
+                <img src="logo.png" alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
               </div>
               <div className="logo-text">
                 <div className="logo-title">{COMPANY_INFO.name}</div>

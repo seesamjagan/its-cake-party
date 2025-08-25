@@ -89,7 +89,7 @@ const createTestI18n = () => {
 // Mock other dependencies
 vi.mock('../../config/company', () => ({
   COMPANY_INFO: {
-    name: 'The Bake Bar',
+    name: 'Its Cake Party',
     tagline: 'Homemade Bakery',
     contact: {
       address: { full: '123 Bakery Street' },
@@ -241,7 +241,7 @@ describe('Localization Integration Tests', () => {
         </TestWrapper>
       );
 
-      expect(screen.getByText(/The Bake Bar is a family-owned bakery/)).toBeInTheDocument();
+      expect(screen.getByText(/Its Cake Party is a family-owned bakery/)).toBeInTheDocument();
     });
   });
 
@@ -350,7 +350,7 @@ describe('Localization Integration Tests', () => {
         </TestWrapper>
       );
 
-      expect(screen.getByText(/The Bake Bar is a family-owned bakery/)).toBeInTheDocument();
+      expect(screen.getByText(/Its Cake Party is a family-owned bakery/)).toBeInTheDocument();
     });
 
     it('handles missing translation keys gracefully', async () => {

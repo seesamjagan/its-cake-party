@@ -46,7 +46,7 @@ vi.mock('lucide-react', () => ({
 // Mock company config
 vi.mock('../../config/company', () => ({
   COMPANY_INFO: {
-    name: 'The Bake Bar',
+    name: 'Its Cake Party',
     tagline: 'Homemade Bakery'
   }
 }));
@@ -78,9 +78,9 @@ describe('Navbar Component', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('The Bake Bar')).toBeInTheDocument();
+    expect(screen.getByText('Its Cake Party')).toBeInTheDocument();
     expect(screen.getByText('Homemade Bakery')).toBeInTheDocument();
-    expect(screen.getByAltText('The Bake Bar Logo')).toBeInTheDocument();
+    expect(screen.getByAltText('Its Cake Party Logo')).toBeInTheDocument();
   });
 
   it('renders all navigation links', () => {

@@ -8,7 +8,7 @@ test.describe('Navigation', () => {
   test('should navigate to different pages', async ({ page }) => {
     // Check home page
     await expect(page).toHaveURL('/');
-    await expect(page.getByText('Welcome to The Bake Bar')).toBeVisible();
+    await expect(page.getByText('Welcome to Its Cake Party')).toBeVisible();
 
     // Navigate to products
     await page.getByRole('link', { name: 'Products' }).click();
@@ -21,7 +21,7 @@ test.describe('Navigation', () => {
     await expect(page.getByText('Contact Us')).toBeVisible();
 
     // Navigate back to home via logo
-    await page.getByRole('link', { name: 'The Bake Bar Logo' }).click();
+    await page.getByRole('link', { name: 'Its Cake Party Logo' }).click();
     await expect(page).toHaveURL('/');
   });
 
@@ -55,8 +55,8 @@ test.describe('Navigation', () => {
   });
 
   test('should display company branding', async ({ page }) => {
-    await expect(page.getByText('The Bake Bar')).toBeVisible();
+    await expect(page.getByText('Its Cake Party')).toBeVisible();
     await expect(page.getByText('Homemade Bakery')).toBeVisible();
-    await expect(page.getByAltText('The Bake Bar Logo')).toBeVisible();
+    await expect(page.getByAltText('Its Cake Party Logo')).toBeVisible();
   });
 });

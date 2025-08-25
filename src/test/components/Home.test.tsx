@@ -45,10 +45,6 @@ vi.mock('../../config/company', () => ({
   }
 }));
 
-// Mock logo image
-vi.mock('../../assets/images/logo.png', () => ({
-  default: 'mock-logo.png'
-}));
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
@@ -101,7 +97,7 @@ describe('Home Component', () => {
 
     const logo = screen.getByAltText('Test Bakery Logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'mock-logo.png');
+    expect(logo).toHaveAttribute('src', 'logo.png');
   });
 
   it('renders hero action buttons with correct links', () => {

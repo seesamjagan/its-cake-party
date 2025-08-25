@@ -147,7 +147,7 @@ test.describe('Theme and Localization', () => {
     await expect(page.getByText('🇮🇳 தமிழ்')).toBeVisible();
 
     // Click outside (on the page title)
-    await page.getByText('Welcome to The Bake Bar').click();
+    await page.getByText('Welcome to Its Cake Party').click();
 
     // Check dropdown is closed
     await expect(page.getByText('🇺🇸 English')).not.toBeVisible();

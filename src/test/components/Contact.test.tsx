@@ -56,7 +56,7 @@ vi.mock('lucide-react', () => ({
 // Mock company config
 vi.mock('../../config/company', () => ({
   COMPANY_INFO: {
-    name: 'The Bake Bar',
+    name: 'Its Cake Party',
     contact: {
       address: {
         full: '123 Bakery Street, Sweet City'

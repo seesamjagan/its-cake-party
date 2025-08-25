@@ -12,7 +12,6 @@ import {
   Heart
 } from 'lucide-react';
 import { COMPANY_INFO } from '../config/company';
-import logoImage from '../assets/images/logo.png';
 
 interface SocialLink {
   icon: React.ComponentType<{ size?: number }>;
@@ -55,7 +54,7 @@ const Footer: React.FC = () => {
             >
               <div className="footer-logo">
                 <div className="logo-icon">
-                  <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
+                  <img src="logo.png" alt={`${COMPANY_INFO.name} Logo`} className="logo-image" />
                 </div>
                 <div className="logo-text">
                   <div className="title">{COMPANY_INFO.name}</div>

@@ -11,7 +11,7 @@ const mockT = vi.fn((key: string, options?: any) => {
     'nav.home': 'Home',
     'nav.products': 'Products',
     'nav.contact': 'Contact',
-    'home.aboutText': `${options?.companyName || 'The Bake Bar'} is a family-owned bakery dedicated to creating the most delicious homemade treats.`
+    'home.aboutText': `${options?.companyName || 'Its Cake Party'} is a family-owned bakery dedicated to creating the most delicious homemade treats.`
   };
   return translations[key] || key;
 });
@@ -37,7 +37,7 @@ vi.mock('lucide-react', () => ({
 // Mock company config
 vi.mock('../../config/company', () => ({
   COMPANY_INFO: {
-    name: 'The Bake Bar',
+    name: 'Its Cake Party',
     tagline: 'Homemade Bakery',
     contact: {
       address: {
@@ -55,10 +55,6 @@ vi.mock('../../config/company', () => ({
   }
 }));
 
-// Mock logo image
-vi.mock('../../assets/images/logo.png', () => ({
-  default: 'test-logo.png'
-}));
 
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -79,9 +75,9 @@ describe('Footer Component', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('The Bake Bar')).toBeInTheDocument();
+    expect(screen.getByText('Its Cake Party')).toBeInTheDocument();
     expect(screen.getByText('Homemade Bakery')).toBeInTheDocument();
-    expect(screen.getByAltText('The Bake Bar Logo')).toBeInTheDocument();
+    expect(screen.getByAltText('Its Cake Party Logo')).toBeInTheDocument();
   });
 
   it('renders company description', () => {
@@ -196,8 +192,8 @@ describe('Footer Component', () => {
     );
 
     expect(screen.getByText(/Made with/)).toBeInTheDocument();
-    expect(screen.getByText(/by The Bake Bar Team/)).toBeInTheDocument();
-    expect(screen.getByText(/© 2024 The Bake Bar/)).toBeInTheDocument();
+    expect(screen.getByText(/by Its Cake Party Team/)).toBeInTheDocument();
+    expect(screen.getByText(/© 2024 Its Cake Party/)).toBeInTheDocument();
     expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
     expect(screen.getByTestId('heart-icon')).toBeInTheDocument();
   });
@@ -261,8 +257,8 @@ describe('Footer Component', () => {
       </TestWrapper>
     );
 
-    const logoImage = screen.getByAltText('The Bake Bar Logo');
-    expect(logoImage).toHaveAttribute('src', 'test-logo.png');
+    const logoImage = screen.getByAltText('Its Cake Party Logo');
+    expect(logoImage).toHaveAttribute('src', 'logo.png');
   });
 
   it('renders heart icon with correct class', () => {

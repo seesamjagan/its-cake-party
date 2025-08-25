@@ -2,7 +2,7 @@
 const phoneDigits = "919551862527"; // For WhatsApp links (without + and spaces)
 
 export const COMPANY_INFO = {
-  name: "The Bake Bar",
+  name: "Its Cake Party",
   tagline: "Homemade Bakery",
   contact: {
     phone: "+91 95518 62527",

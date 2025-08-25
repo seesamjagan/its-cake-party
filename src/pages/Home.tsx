@@ -6,7 +6,6 @@ import { ChevronRight, Star, Award, Users, Clock } from 'lucide-react';
 import { Product } from '../types';
 import productsData from '../data/products.json';
 import { COMPANY_INFO } from '../config/company';
-import logoImage from '../assets/images/logo.png';
 
 interface Stat {
   icon: React.ComponentType<{ size?: number }>;
@@ -80,7 +79,7 @@ const Home: React.FC = () => {
             animate="animate"
             className="hero-logo"
           >
-            <img src={logoImage} alt={`${COMPANY_INFO.name} Logo`} className="hero-logo-image" />
+            <img src="logo.png" alt={`${COMPANY_INFO.name} Logo`} className="hero-logo-image" />
           </motion.div>
 
           <motion.h1

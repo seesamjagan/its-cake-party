@@ -1,6 +1,6 @@
-# The Bake Bar - Homemade Bakery Website
+# Its Cake Party - Homemade Bakery Website
 
-A responsive, mobile-friendly website for The Bake Bar homemade bakery, built with React, Vite, and TailwindCSS.
+A responsive, mobile-friendly website for Its Cake Party homemade bakery, built with React, Vite, and TailwindCSS.
 
 ## 🌐 Live Website
 
@@ -267,8 +267,8 @@ For support or questions about this project:
 
 ## 📄 License
 
-This project is created for The Bake Bar bakery. All rights reserved.
+This project is created for Its Cake Party bakery. All rights reserved.
 
 ---
 
-Built with ❤️ for The Bake Bar
+Built with ❤️ for Its Cake Party
