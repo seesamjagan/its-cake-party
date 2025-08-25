@@ -7,25 +7,25 @@ export const COMPANY_INFO = {
   contact: {
     phone: "+91 95518 62527",
     phoneDigits: phoneDigits,
-    email: "Jaganvinothini1993@gmail.com",
+    email: "itscakeparty@gmail.com",
     address: {
-      street: "123 Bakery Street",
-      city: "Sweet City",
+      street: "14 Vedha Illam, Amudham Nagar, 4th Cross Street",
+      city: "New Perungalathur, Chennai - 600063",
       country: "IN",
-      full: "123 Bakery Street, Sweet City"
+      full: "14 Vedha Illam, Amudham Nagar, 4th Cross Street, New Perungalathur, Chennai - 600063"
     },
     hours: "Mon-Sun: 8AM-8PM",
     hoursDetailed: "Monday to Sunday: 8:00 AM - 8:00 PM"
   },
   social: {
-    handle: "the-bake-bar",
-    facebook: "https://facebook.com/the-bake-bar",
-    instagram: "https://instagram.com/the-bake-bar",
-    twitter: "https://twitter.com/the-bake-bar",
+    handle: "its-cake-party",
+    facebook: "https://facebook.com/its-cake-party",
+    instagram: "https://instagram.com/its-cake-party",
+    twitter: "https://twitter.com/its-cake-party",
     whatsapp: `https://wa.me/${phoneDigits}`
   },
   website: {
-    url: "https://seesamjagan.github.io/the-bake-bar/",
+    url: "https://seesamjagan.github.io/its-cake-party/",
     domain: "seesamjagan.github.io"
   }
 } as const;

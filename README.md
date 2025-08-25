@@ -4,7 +4,7 @@ A responsive, mobile-friendly website for Its Cake Party homemade bakery, built 
 
 ## 🌐 Live Website
 
-**Visit the live site:** [https://seesamjagan.github.io/the-bake-bar/](https://seesamjagan.github.io/the-bake-bar/)
+**Visit the live site:** [https://seesamjagan.github.io/its-cake-party/](https://seesamjagan.github.io/its-cake-party/)
 
 The website is deployed using GitHub Pages with automated deployment via GitHub Actions.
 
@@ -144,7 +144,7 @@ The website is automatically deployed to GitHub Pages using GitHub Actions. The 
 #### Deployment Process:
 1. **Automated Build**: GitHub Actions workflow builds the project using `npm run build`
 2. **Deploy to Pages**: Built files are automatically deployed to GitHub Pages
-3. **Live Site**: Available at [https://seesamjagan.github.io/the-bake-bar/](https://seesamjagan.github.io/the-bake-bar/)
+3. **Live Site**: Available at [https://seesamjagan.github.io/its-cake-party/](https://seesamjagan.github.io/its-cake-party/)
 
 #### Manual Deployment:
 1. Push changes to the `master` branch:
@@ -163,7 +163,7 @@ git push origin master
 
 The project is configured for GitHub Pages with:
 - Build output: `dist/` directory
-- Base path: `/the-bake-bar/` for GitHub Pages subdirectory
+- Base path: `/its-cake-party/` for GitHub Pages subdirectory
 - SPA routing support with React Router basename
 - Automated deployment via GitHub Actions workflow
 

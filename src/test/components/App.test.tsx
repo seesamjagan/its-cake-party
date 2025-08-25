@@ -59,7 +59,7 @@ describe('App Component', () => {
   });
 
   it('renders products page on /products route', () => {
-    window.history.pushState({}, '', '/the-bake-bar/products');
+    window.history.pushState({}, '', '/its-cake-party/products');
 
     render(<App />);
 
@@ -67,7 +67,7 @@ describe('App Component', () => {
   });
 
   it('renders cart page on /cart route', () => {
-    window.history.pushState({}, '', '/the-bake-bar/cart');
+    window.history.pushState({}, '', '/its-cake-party/cart');
 
     render(<App />);
 
@@ -75,7 +75,7 @@ describe('App Component', () => {
   });
 
   it('renders contact page on /contact route', () => {
-    window.history.pushState({}, '', '/the-bake-bar/contact');
+    window.history.pushState({}, '', '/its-cake-party/contact');
 
     render(<App />);
 

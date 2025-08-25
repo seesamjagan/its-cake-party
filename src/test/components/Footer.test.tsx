@@ -48,9 +48,9 @@ vi.mock('../../config/company', () => ({
       hours: 'Mon-Sun: 8AM-8PM'
     },
     social: {
-      facebook: 'https://facebook.com/the-bake-bar',
-      instagram: 'https://instagram.com/the-bake-bar',
-      twitter: 'https://twitter.com/the-bake-bar'
+      facebook: 'https://facebook.com/its-cake-party',
+      instagram: 'https://instagram.com/its-cake-party',
+      twitter: 'https://twitter.com/its-cake-party'
     }
   }
 }));
@@ -127,9 +127,9 @@ describe('Footer Component', () => {
     const instagramLink = screen.getByLabelText('Instagram');
     const twitterLink = screen.getByLabelText('Twitter');
 
-    expect(facebookLink).toHaveAttribute('href', 'https://facebook.com/the-bake-bar');
-    expect(instagramLink).toHaveAttribute('href', 'https://instagram.com/the-bake-bar');
-    expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/the-bake-bar');
+    expect(facebookLink).toHaveAttribute('href', 'https://facebook.com/its-cake-party');
+    expect(instagramLink).toHaveAttribute('href', 'https://instagram.com/its-cake-party');
+    expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/its-cake-party');
   });
 
   it('renders social media icons', () => {
