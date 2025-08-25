@@ -53,7 +53,7 @@ const Products: React.FC = () => {
       // Set initial price range based on products
       const prices = sortedProducts.map(p => p.price);
       setPriceRange([Math.min(...prices), Math.max(...prices)]);
-    }, 1200);
+    }, 900);
   }, []);
 
   useEffect(() => {

@@ -1,0 +1,398 @@
+name: 🧪 Comprehensive Testing Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '20'
+  CACHE_KEY: node-modules
+
+jobs:
+  # =====================================================
+  # UNIT & INTEGRATION TESTING WITH COVERAGE
+  # =====================================================
+  unit-tests:
+    name: 🧪 Unit & Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📋 Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.CACHE_KEY }}-
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🔍 Lint Code
+        run: npm run lint
+
+      - name: 🏗️ Build Application
+        run: npm run build
+
+      - name: 🧪 Run Unit Tests with Coverage
+        run: npm run test:coverage
+
+      - name: 📊 Upload Coverage Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 30
+
+      - name: 📈 Coverage Summary
+        run: |
+          echo "## 📊 Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Coverage |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Lines | $(grep -o 'Lines.*' coverage/coverage-summary.json | grep -o '[0-9]*\.[0-9]*' | head -1)% |" >> $GITHUB_STEP_SUMMARY
+          echo "| Functions | $(grep -o 'Functions.*' coverage/coverage-summary.json | grep -o '[0-9]*\.[0-9]*' | head -1)% |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branches | $(grep -o 'Branches.*' coverage/coverage-summary.json | grep -o '[0-9]*\.[0-9]*' | head -1)% |" >> $GITHUB_STEP_SUMMARY
+          echo "| Statements | $(grep -o 'Statements.*' coverage/coverage-summary.json | grep -o '[0-9]*\.[0-9]*' | head -1)% |" >> $GITHUB_STEP_SUMMARY
+
+      - name: ❌ Coverage Threshold Check
+        run: |
+          # Check if coverage meets 90% threshold
+          LINES_COVERAGE=$(grep -o '"lines":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9]*\.[0-9]*' coverage/coverage-summary.json | grep -o '[0-9]*\.[0-9]*$')
+          if (( $(echo "$LINES_COVERAGE < 90" | bc -l) )); then
+            echo "❌ Lines coverage ($LINES_COVERAGE%) is below 90% threshold"
+            exit 1
+          else
+            echo "✅ Lines coverage ($LINES_COVERAGE%) meets 90% threshold"
+          fi
+
+  # =====================================================
+  # E2E TESTING WITH PLAYWRIGHT
+  # =====================================================
+  e2e-tests:
+    name: 🎭 End-to-End Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: unit-tests
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📋 Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.CACHE_KEY }}-
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🎭 Install Playwright Browsers
+        run: npx playwright install --with-deps ${{ matrix.project }}
+
+      - name: 🏗️ Build for Production
+        run: npm run build
+
+      - name: 🧪 Run E2E Tests - ${{ matrix.project }}
+        run: npx playwright test --project=${{ matrix.project }}
+
+      - name: 📊 Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-${{ matrix.project }}
+          path: playwright-report/
+          retention-days: 30
+
+      - name: 🎥 Upload Test Videos
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-videos-${{ matrix.project }}
+          path: test-results/
+          retention-days: 7
+
+  # =====================================================
+  # MOBILE E2E TESTING
+  # =====================================================
+  mobile-e2e-tests:
+    name: 📱 Mobile E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: unit-tests
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ['Mobile Chrome', 'Mobile Safari']
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 📱 Install Mobile Browsers
+        run: npx playwright install --with-deps
+
+      - name: 🏗️ Build for Production
+        run: npm run build
+
+      - name: 🧪 Run Mobile E2E Tests
+        run: npx playwright test --project="${{ matrix.project }}"
+
+      - name: 📊 Upload Mobile Test Report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: mobile-playwright-report-${{ matrix.project }}
+          path: playwright-report/
+          retention-days: 30
+
+  # =====================================================
+  # SECURITY & VULNERABILITY CHECKS
+  # =====================================================
+  security-audit:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🔍 Run Security Audit
+        run: npm audit --audit-level=high
+
+      - name: 🔒 Check for vulnerabilities
+        run: npx audit-ci --config audit-ci.json
+        continue-on-error: true
+
+  # =====================================================
+  # DEPENDENCY & BUNDLE ANALYSIS
+  # =====================================================
+  bundle-analysis:
+    name: 📦 Bundle Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🏗️ Build Application
+        run: npm run build
+
+      - name: 📊 Analyze Bundle Size
+        run: |
+          echo "## 📦 Bundle Size Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          find dist -name "*.js" -exec ls -lh {} \; | awk '{print "| " $9 " | " $5 " |"}' >> $GITHUB_STEP_SUMMARY
+          find dist -name "*.css" -exec ls -lh {} \; | awk '{print "| " $9 " | " $5 " |"}' >> $GITHUB_STEP_SUMMARY
+
+  # =====================================================
+  # LIGHTHOUSE PERFORMANCE TESTING
+  # =====================================================
+  lighthouse-ci:
+    name: 🏃 Performance Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: unit-tests
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🏗️ Build Application
+        run: npm run build
+
+      - name: 🚀 Start Server & Run Lighthouse
+        run: |
+          npm run preview &
+          SERVER_PID=$!
+          sleep 10
+
+          # Install Lighthouse CI
+          npm install -g @lhci/cli@0.12.x
+
+          # Run Lighthouse CI
+          lhci autorun --upload.target=temporary-public-storage --collect.startServerCommand="echo 'Server already running'" --collect.url="http://localhost:4173"
+
+          # Clean up
+          kill $SERVER_PID
+
+      - name: 📊 Performance Summary
+        run: |
+          echo "## 🏃 Performance Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "Lighthouse performance analysis completed!" >> $GITHUB_STEP_SUMMARY
+          echo "Check the Lighthouse CI results above for detailed performance metrics." >> $GITHUB_STEP_SUMMARY
+
+  # =====================================================
+  # ACCESSIBILITY TESTING
+  # =====================================================
+  accessibility-tests:
+    name: ♿ Accessibility Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: unit-tests
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🚀 Install Dependencies
+        run: npm ci
+
+      - name: 🎭 Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: 🏗️ Build Application
+        run: npm run build
+
+      - name: ♿ Run Accessibility Tests
+        run: |
+          # Start server in background
+          npm run preview &
+          SERVER_PID=$!
+          sleep 10
+
+          # Install axe-playwright
+          npm install -D @axe-core/playwright
+
+          # Create and run accessibility test
+          cat > accessibility.test.js << 'EOF'
+          const { test, expect } = require('@playwright/test');
+          const AxeBuilder = require('@axe-core/playwright').default;
+
+          test.describe('Accessibility Tests', () => {
+            test('should not have accessibility violations on home page', async ({ page }) => {
+              await page.goto('http://localhost:4173');
+              const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+              expect(accessibilityScanResults.violations).toEqual([]);
+            });
+
+            test('should not have accessibility violations on products page', async ({ page }) => {
+              await page.goto('http://localhost:4173/products');
+              const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+              expect(accessibilityScanResults.violations).toEqual([]);
+            });
+
+            test('should not have accessibility violations on contact page', async ({ page }) => {
+              await page.goto('http://localhost:4173/contact');
+              const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+              expect(accessibilityScanResults.violations).toEqual([]);
+            });
+          });
+          EOF
+
+          npx playwright test accessibility.test.js --reporter=html
+
+          # Clean up
+          kill $SERVER_PID
+
+  # =====================================================
+  # FINAL STATUS REPORT
+  # =====================================================
+  test-summary:
+    name: 📋 Test Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests, e2e-tests, mobile-e2e-tests, security-audit, bundle-analysis]
+    if: always()
+
+    steps:
+      - name: 📊 Generate Test Summary
+        run: |
+          echo "## 🧪 Comprehensive Testing Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Results:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Unit & Integration Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎭 E2E Tests (Desktop): ${{ needs.e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 E2E Tests (Mobile): ${{ needs.mobile-e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔒 Security Audit: ${{ needs.security-audit.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 📦 Bundle Analysis: ${{ needs.bundle-analysis.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.unit-tests.result }}" == "success" && "${{ needs.e2e-tests.result }}" == "success" && "${{ needs.mobile-e2e-tests.result }}" == "success" ]]; then
+            echo "### 🎉 All tests passed successfully!" >> $GITHUB_STEP_SUMMARY
+            echo "The application is ready for deployment. 🚀" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ Some tests failed" >> $GITHUB_STEP_SUMMARY
+            echo "Please check the failed jobs and fix the issues before deployment." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🚨 Notify on Failure
+        if: ${{ needs.unit-tests.result != 'success' || needs.e2e-tests.result != 'success' || needs.mobile-e2e-tests.result != 'success' }}
+        run: |
+          echo "❌ Testing pipeline failed!"
+          echo "Check the logs for more details on what went wrong."
+          exit 1

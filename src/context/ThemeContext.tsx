@@ -12,12 +12,19 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     // Check for saved theme preference or default to system preference
-    const savedTheme = localStorage.getItem('bakery-theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    try {
+      const savedTheme = localStorage.getItem('bakery-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme) {
-      setIsDark(savedTheme === 'dark');
-    } else {
+      if (savedTheme) {
+        setIsDark(savedTheme === 'dark');
+      } else {
+        setIsDark(systemDark);
+      }
+    } catch (error) {
+      // Handle localStorage access errors gracefully
+      console.error('Failed to access localStorage:', error);
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setIsDark(systemDark);
     }
   }, []);
@@ -26,10 +33,16 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // Apply theme to document
     if (isDark) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('bakery-theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('bakery-theme', 'light');
+    }
+
+    // Save theme preference to localStorage (with error handling)
+    try {
+      localStorage.setItem('bakery-theme', isDark ? 'dark' : 'light');
+    } catch (error) {
+      // Handle localStorage access errors gracefully
+      console.error('Failed to save theme preference:', error);
     }
   }, [isDark]);
 
