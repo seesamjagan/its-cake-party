@@ -20,7 +20,7 @@ export const COMPANY_INFO = {
   social: {
     handle: "its-cake-party",
     facebook: "https://facebook.com/its-cake-party",
-    instagram: "https://instagram.com/its-cake-party",
+    instagram: "https://instagram.com/its__cakeparty",
     twitter: "https://twitter.com/its-cake-party",
     whatsapp: `https://wa.me/${phoneDigits}`
   },
