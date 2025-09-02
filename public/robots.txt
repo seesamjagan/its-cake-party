@@ -1,0 +1,73 @@
+# Robots.txt for Its Cake Party - Homemade Bakery
+# https://itscakeparty.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+Allow: /products
+Allow: /contact
+Allow: /cart
+Allow: /manifest.json
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin
+# Disallow: /private
+
+# Sitemap location
+Sitemap: https://itscakeparty.com/sitemap.xml
+
+# Crawl-delay (optional - be respectful to server resources)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Facebook (for social media previews)
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter (for social media previews)
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn (for social media previews)
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest
+User-agent: Pinterest
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /

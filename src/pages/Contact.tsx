@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { ContactFormData } from '../types';
 import { COMPANY_INFO, getEmailUrl, getPhoneUrl, getMapsUrl, getWhatsAppUrl } from '../config/company';
+import { useSEO } from '../hooks/useSEO';
 
 interface ContactInfoItem {
   icon: React.ComponentType<{ size?: number }>;
@@ -44,6 +45,9 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  // SEO optimization for contact page
+  useSEO();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setFormData({

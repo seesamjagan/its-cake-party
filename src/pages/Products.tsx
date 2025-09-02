@@ -15,6 +15,7 @@ import {
 import { useCart } from '../context/CartContext';
 import { Product } from '../types';
 import productsData from '../data/products.json';
+import { useSEO } from '../hooks/useSEO';
 
 interface Category {
   id: string;
@@ -37,6 +38,9 @@ const Products: React.FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // SEO optimization for products page
+  useSEO();
 
   useEffect(() => {
     // Simulate loading with realistic delay

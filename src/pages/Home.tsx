@@ -5,6 +5,7 @@ import { ChevronRight, Star, Award, Users, Clock } from 'lucide-react';
 import { Product } from '../types';
 import productsData from '../data/products.json';
 import { COMPANY_INFO } from '../config/company';
+import { useSEO } from '../hooks/useSEO';
 
 interface Stat {
   icon: React.ComponentType<{ size?: number }>;
@@ -15,6 +16,9 @@ interface Stat {
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+
+  // SEO optimization for home page
+  useSEO();
 
   useEffect(() => {
     // Get featured products

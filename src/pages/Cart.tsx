@@ -16,6 +16,7 @@ import {
 import { useCart } from '../context/CartContext';
 import { CustomerInfo } from '../types';
 import { COMPANY_INFO, getWhatsAppUrl, getEmailUrl } from '../config/company';
+import { useSEO } from '../hooks/useSEO';
 
 const Cart: React.FC = () => {
   const { t } = useTranslation();
@@ -27,6 +28,9 @@ const Cart: React.FC = () => {
     phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  // SEO optimization for cart page
+  useSEO();
 
   const handleQuantityChange = (productId: number, newQuantity: number): void => {
     if (newQuantity <= 0) {
