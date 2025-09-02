@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { ChevronRight, Star, Award, Users, Clock } from 'lucide-react';
 import { Product } from '../types';
 import productsData from '../data/products.json';
@@ -23,36 +22,6 @@ const Home: React.FC = () => {
     setFeaturedProducts(featured);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  const floatVariants = {
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut" as const
-      }
-    }
-  };
 
   const stats: Stat[] = [
     { icon: Users, number: '20+', label: t('home.stats.customers') },
@@ -68,87 +37,48 @@ const Home: React.FC = () => {
         <div className="floating-element element-1"></div>
         <div className="floating-element element-2"></div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="hero-content"
-        >
-          <motion.div
-            variants={floatVariants}
-            animate="animate"
-            className="hero-logo"
-          >
+        <div className="hero-content">
+          <div className="hero-logo">
             <img src="logo.png" alt={`${COMPANY_INFO.name} Logo`} className="hero-logo-image" />
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={itemVariants}
-            className="hero-title"
-          >
+          <h1 className="hero-title">
             {t('home.title', { companyName: COMPANY_INFO.name })}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={itemVariants}
-            className="hero-subtitle"
-          >
+          <p className="hero-subtitle">
             {t('home.subtitle', { tagline: COMPANY_INFO.tagline })}
-          </motion.p>
+          </p>
 
-          <motion.p
-            variants={itemVariants}
-            className="hero-description"
-          >
+          <p className="hero-description">
             {t('home.description')}
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={itemVariants}
-            className="hero-actions"
-          >
+          <div className="hero-actions">
             <Link to="/products">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary"
-              >
+              <button className="btn btn-primary">
                 {t('home.cta')}
                 <ChevronRight size={20} />
-              </motion.button>
+              </button>
             </Link>
             <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-secondary"
-              >
+              <button className="btn btn-secondary">
                 {t('nav.contact')}
-              </motion.button>
+              </button>
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Stats Section */}
       <section className="stats-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="stats-grid"
-          >
+          <div className="stats-grid">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                   className="stat-item"
                 >
                   <div className="stat-icon">
@@ -160,46 +90,29 @@ const Home: React.FC = () => {
                   <div className="stat-label">
                     {stat.label}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Featured Products Section */}
       <section className="featured-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2 className="section-title">
               {t('home.featured')}
             </h2>
             <p className="section-description">
               {t('common.featuredDescription')}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="products-grid"
-          >
+          <div className="products-grid">
             {featuredProducts.map((product, index) => (
-              <motion.div
+              <div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
                 className="card product-card"
               >
                 <div className="product-image">
@@ -221,29 +134,21 @@ const Home: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
             style={{ marginTop: '3rem' }}
           >
             <Link to="/products">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary"
-              >
+              <button className="btn btn-primary">
                 {t('common.viewAllProducts')}
                 <ChevronRight size={20} />
-              </motion.button>
+              </button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -251,12 +156,7 @@ const Home: React.FC = () => {
       <section style={{ padding: '5rem 0', background: 'linear-gradient(to right, #FFF8DC, #F5F5DC)' }}>
         <div className="container">
           <div className="grid grid-1 lg-grid-2 gap-8" style={{ alignItems: 'center' }}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <h2 className="section-title" style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
                 {t('home.about')}
               </h2>
@@ -267,15 +167,9 @@ const Home: React.FC = () => {
                 From our signature chocolate cakes to delicate pastries, every item in our bakery
                 tells a story of tradition, innovation, and pure deliciousness.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
+            <div className="relative">
               <div style={{
                 aspectRatio: '4/3',
                 background: 'linear-gradient(to bottom right, #8B4513, #d97706)',
@@ -292,9 +186,7 @@ const Home: React.FC = () => {
                   <p style={{ fontSize: '1.25rem', fontWeight: 600 }}>Crafted with Love</p>
                 </div>
               </div>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              <div
                 style={{
                   position: 'absolute',
                   top: '-1rem',
@@ -310,8 +202,8 @@ const Home: React.FC = () => {
                 }}
               >
                 ⭐
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

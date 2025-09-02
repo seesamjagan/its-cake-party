@@ -2,33 +2,6 @@ import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 import React from 'react'
 
-// Mock framer-motion to avoid animation-related issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: 'div',
-    button: 'button',
-    section: 'section',
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    p: 'p',
-    span: 'span',
-    nav: 'nav',
-    footer: 'footer',
-    header: 'header',
-    aside: 'aside',
-    main: 'main',
-    a: 'a',
-    form: 'form',
-    input: 'input',
-    textarea: 'textarea',
-    ul: 'ul',
-    li: 'li',
-    img: 'img',
-  },
-  AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
-}))
-
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
   BrowserRouter: ({ children }: { children: React.ReactNode }) => children,

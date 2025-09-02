@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import {
   MapPin,
   Phone,
@@ -132,24 +131,6 @@ const Contact: React.FC = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
 
   const faqs: FAQ[] = [
     {
@@ -174,37 +155,25 @@ const Contact: React.FC = () => {
     <div className="page-container contact-page">
       <div className="container">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="page-header"
-        >
+        <div className="page-header">
           <h1 className="page-title">
             {t('contact.title')}
           </h1>
           <p className="page-description">
             {t('contact.subtitle')}
           </p>
-        </motion.div>
+        </div>
 
         <div className="contact-grid">
           {/* Contact Information */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="contact-info"
-          >
+          <div className="contact-info">
             {/* Contact Cards */}
             <div className="info-cards">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <motion.div
+                  <div
                     key={index}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02 }}
                     onClick={info.action || undefined}
                     className={`card info-card ${info.action ? 'cursor-pointer' : ''}`}
                   >
@@ -221,16 +190,13 @@ const Contact: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
             {/* Map Placeholder */}
-            <motion.div
-              variants={itemVariants}
-              className="card map-placeholder"
-            >
+            <div className="card map-placeholder">
               <div className="map-content">
                 <MapPin size={48} className="map-icon" />
                 <p className="map-title">
@@ -240,11 +206,10 @@ const Contact: React.FC = () => {
                   {COMPANY_INFO.contact.address.full}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Social Media */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="card social-section"
               style={{ padding: '1.5rem' }}
             >
@@ -255,29 +220,24 @@ const Contact: React.FC = () => {
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
-                    <motion.a
+                    <a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                       className={`social-item ${social.color}`}
                     >
                       <Icon size={24} />
                       <span className="social-name">{social.name}</span>
-                    </motion.a>
+                    </a>
                   );
                 })}
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+          <div
             className="card contact-form"
             style={{ padding: '2rem' }}
           >
@@ -349,56 +309,44 @@ const Contact: React.FC = () => {
 
               {/* Submit Options */}
               <div className="submit-options">
-                <motion.button
+                <button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                   disabled={isSubmitting}
                   className="btn btn-primary"
                   style={{ width: '100%' }}
                 >
                   <Send size={20} />
                   {isSubmitting ? t('common.loading') : t('contact.form.send')}
-                </motion.button>
+                </button>
 
                 <div className="options-grid">
-                  <motion.button
+                  <button
                     type="button"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                     onClick={handleWhatsApp}
                     disabled={!formData.name || !formData.message}
                     className="btn btn-secondary option-btn whatsapp"
                   >
                     <MessageCircle size={18} />
                     WhatsApp
-                  </motion.button>
+                  </button>
 
-                  <motion.button
+                  <button
                     type="button"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                     onClick={handleDirectEmail}
                     disabled={!formData.name || !formData.email}
                     className="btn btn-secondary option-btn email"
                   >
                     <Mail size={18} />
                     Direct Email
-                  </motion.button>
+                  </button>
                 </div>
               </div>
             </form>
-          </motion.div>
+          </div>
         </div>
 
         {/* FAQ Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="faq-section"
-        >
+        <div className="faq-section">
           <div className="faq-header">
             <h2 className="faq-title">
               Frequently Asked Questions
@@ -410,12 +358,8 @@ const Contact: React.FC = () => {
 
           <div className="faq-grid">
             {faqs.map((faq, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="card faq-item"
               >
                 <h3 className="faq-question">
@@ -424,10 +368,10 @@ const Contact: React.FC = () => {
                 <p className="faq-answer">
                   {faq.answer}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

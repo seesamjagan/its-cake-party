@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Filter,
@@ -158,24 +157,6 @@ const Products: React.FC = () => {
     return `linear-gradient(135deg, ${colors[colorIndex][0]}, ${colors[colorIndex][1]})`;
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
 
   if (isLoading) {
     return (
@@ -198,27 +179,17 @@ const Products: React.FC = () => {
     <div className="page-container products-page">
       <div className="container">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="page-header"
-        >
+        <div className="page-header">
           <h1 className="page-title">
             {t('products.title')}
           </h1>
           <p className="page-description">
             {t('products.subtitle')}
           </p>
-        </motion.div>
+        </div>
 
-        {/* Enhanced {t('products.filters')} */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="enhanced-filters"
-        >
+        {/* Enhanced filters */}
+        <div className="enhanced-filters">
           {/* Top Filter Bar */}
           <div className="filter-bar">
             {/* Search */}
@@ -275,16 +246,9 @@ const Products: React.FC = () => {
             </button>
           </div>
 
-          {/* Expandable {t('products.filters')} */}
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="expandable-filters"
-              >
+          {/* Expandable filters */}
+          {showFilters && (
+            <div className="expandable-filters">
                 {/* t('products.categories.title') */}
                 <div className="filter-section">
                   <h4>{t('products.categories.title')}</h4>
@@ -319,37 +283,19 @@ const Products: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+            </div>
+          )}
+        </div>
 
         {/* Results Count */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="results-info"
-        >
+        <div className="results-info">
           <p>{t('products.results.showing', { count: filteredProducts.length, total: products.length })}</p>
-        </motion.div>
+        </div>
 
         {/* Products Grid/List */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedCategory + searchTerm + sortBy + viewMode}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className={`products-container ${viewMode}`}
-          >
+        <div className={`products-container ${viewMode}`}>
             {filteredProducts.length === 0 ? (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="no-products"
-              >
+              <div className="no-products">
                 <div className="no-products-icon">🔍</div>
                 <h3>{t('products.results.noProducts')}</h3>
                 <p>{t('products.results.noProductsDesc')}</p>
@@ -363,13 +309,11 @@ const Products: React.FC = () => {
                 >
                   {t('products.results.clearFilters')}
                 </button>
-              </motion.div>
+              </div>
             ) : (
               filteredProducts.map((product) => (
-                <motion.div
+                <div
                   key={product.id}
-                  variants={itemVariants}
-                  whileHover={{ y: viewMode === 'grid' ? -10 : 0, scale: viewMode === 'grid' ? 1.02 : 1 }}
                   className={`product-card ${viewMode} ${product.featured ? 'featured' : ''}`}
                 >
                   {/* Product Image */}
@@ -452,15 +396,13 @@ const Products: React.FC = () => {
                         <div className="info-column-actions">
                           <div className="product-price">₹{product.price}</div>
                           <div className="product-quantity">{t('products.labels.qty')}: {product.quantity}</div>
-                          <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                          <button
                             onClick={() => handleAddToCart(product)}
                             className="btn btn-primary add-to-cart compact"
                           >
                             <ShoppingCart size={16} />
                             {t('products.buttons.add')}
-                          </motion.button>
+                          </button>
                         </div>
                       </>
                     ) : (
@@ -506,24 +448,21 @@ const Products: React.FC = () => {
                           </div>
                         )}
 
-                        {/* {t('products.buttons.addToCart')} Button */}
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                        {/* Add to Cart Button */}
+                        <button
                           onClick={() => handleAddToCart(product)}
                           className="btn btn-primary add-to-cart"
                         >
                           <ShoppingCart size={18} />
                           {t('products.buttons.addToCart')}
-                        </motion.button>
+                        </button>
                       </>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))
             )}
-          </motion.div>
-        </AnimatePresence>
+        </div>
       </div>
     </div>
   );

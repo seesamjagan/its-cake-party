@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   ShoppingCart,
   Plus,
@@ -91,38 +90,11 @@ const Cart: React.FC = () => {
     }, 2000);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 }
-    },
-    exit: {
-      opacity: 0,
-      x: 20,
-      transition: { duration: 0.3 }
-    }
-  };
 
   if (items.length === 0 && !showOrderForm) {
     return (
       <div className="page-container flex-center" style={{ minHeight: '100vh' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <div className="empty-icon">🛒</div>
           <h2 className="empty-title">
             {t('cart.empty')}
@@ -131,16 +103,12 @@ const Cart: React.FC = () => {
             Add some delicious treats to your cart!
           </p>
           <Link to="/products">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn btn-primary"
-            >
+            <button className="btn btn-primary">
               <ArrowLeft size={20} />
               {t('cart.continueShopping')}
-            </motion.button>
+            </button>
           </Link>
-        </motion.div>
+        </div>
       </div>
     );
   }
@@ -149,37 +117,24 @@ const Cart: React.FC = () => {
     <div className="page-container cart-page">
       <div className="container" style={{ maxWidth: '64rem' }}>
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="page-header"
-        >
+        <div className="page-header">
           <h1 className="page-title">
             {t('cart.title')}
           </h1>
           <p className="page-description">
             Review your order and proceed to checkout
           </p>
-        </motion.div>
+        </div>
 
         {!showOrderForm ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {/* Cart Items */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-            >
-              <AnimatePresence>
-                {items.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    variants={itemVariants}
-                    layout
-                    exit="exit"
-                    className="card cart-item"
-                  >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className="card cart-item"
+                >
                     <div className="item-content">
                       {/* Product Image */}
                       <div className="item-image">
@@ -201,27 +156,23 @@ const Cart: React.FC = () => {
 
                       {/* Quantity Controls */}
                       <div className="quantity-controls">
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                        <button
                           onClick={() => handleQuantityChange(item.id, item.cartQuantity - 1)}
                           className="quantity-btn"
                         >
                           <Minus size={16} />
-                        </motion.button>
+                        </button>
 
                         <span className="quantity-display">
                           {item.cartQuantity}
                         </span>
 
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                        <button
                           onClick={() => handleQuantityChange(item.id, item.cartQuantity + 1)}
                           className="quantity-btn"
                         >
                           <Plus size={16} />
-                        </motion.button>
+                        </button>
                       </div>
 
                       {/* Price and Remove */}
@@ -230,26 +181,20 @@ const Cart: React.FC = () => {
                           ₹{item.price * item.cartQuantity}
                         </span>
 
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                        <button
                           onClick={() => removeFromCart(item.id)}
                           className="remove-btn"
                         >
                           <Trash2 size={16} />
-                        </motion.button>
+                        </button>
                       </div>
                     </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+                </div>
+              ))}
+            </div>
 
             {/* Cart Summary */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+            <div
               className="card cart-summary"
               style={{ padding: '1.5rem' }}
             >
@@ -260,35 +205,29 @@ const Cart: React.FC = () => {
 
               <div className="summary-actions">
                 <Link to="/products" style={{ flex: 1 }}>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     className="btn btn-secondary"
                     style={{ width: '100%' }}
                   >
                     <ArrowLeft size={20} />
                     {t('cart.continueShopping')}
-                  </motion.button>
+                  </button>
                 </Link>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   onClick={() => setShowOrderForm(true)}
                   className="btn btn-primary"
                   style={{ flex: 1 }}
                 >
                   <ShoppingCart size={20} />
                   {t('cart.checkout')}
-                </motion.button>
+                </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         ) : (
           /* Order Form */
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <div
             className="card"
             style={{ padding: '2rem' }}
           >
@@ -390,9 +329,7 @@ const Cart: React.FC = () => {
               </p>
 
               <div className="grid grid-1 md-grid-2 gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   onClick={handleWhatsAppSubmit}
                   disabled={!customerInfo.name || !customerInfo.phone || isSubmitting}
                   className="btn btn-primary whatsapp"
@@ -400,11 +337,9 @@ const Cart: React.FC = () => {
                 >
                   <MessageCircle size={20} />
                   {isSubmitting ? t('common.loading') : t('order.whatsapp')}
-                </motion.button>
+                </button>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   onClick={handleEmailSubmit}
                   disabled={!customerInfo.name || !customerInfo.email || isSubmitting}
                   className="btn btn-primary email"
@@ -412,19 +347,17 @@ const Cart: React.FC = () => {
                 >
                   <Send size={20} />
                   {isSubmitting ? t('common.loading') : t('order.email')}
-                </motion.button>
+                </button>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 onClick={() => setShowOrderForm(false)}
                 className="btn btn-secondary"
               >
                 Back to Cart
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </div>
