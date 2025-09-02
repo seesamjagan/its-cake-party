@@ -4,7 +4,7 @@ A responsive, mobile-friendly website for Its Cake Party homemade bakery, built 
 
 ## 🌐 Live Website
 
-**Visit the live site:** [https://seesamjagan.github.io/its-cake-party/](https://seesamjagan.github.io/its-cake-party/)
+**Visit the live site:** [https://itscakeparty.com/](https://itscakeparty.com/)
 
 The website is deployed using GitHub Pages with automated deployment via GitHub Actions.
 
@@ -144,7 +144,7 @@ The website is automatically deployed to GitHub Pages using GitHub Actions. The 
 #### Deployment Process:
 1. **Automated Build**: GitHub Actions workflow builds the project using `npm run build`
 2. **Deploy to Pages**: Built files are automatically deployed to GitHub Pages
-3. **Live Site**: Available at [https://seesamjagan.github.io/its-cake-party/](https://seesamjagan.github.io/its-cake-party/)
+3. **Live Site**: Available at [https://itscakeparty.com/](https://itscakeparty.com/)
 
 #### Manual Deployment:
 1. Push changes to the `master` branch:

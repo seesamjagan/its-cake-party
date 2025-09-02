@@ -25,7 +25,7 @@ export const COMPANY_INFO = {
     whatsapp: `https://wa.me/${phoneDigits}`
   },
   website: {
-    url: "https://seesamjagan.github.io/its-cake-party/",
+    url: "https://itscakeparty.com/",
     domain: "seesamjagan.github.io"
   }
 } as const;
