@@ -10,6 +10,15 @@ $secondary-brown: #b45309;
 $accent-pink: #ec4899;
 $accent-pink-hover: #f472b6;
 
+// Teal-Coral Theme Variables
+$teal-blue: #008080;
+$coral-orange: #FF7F50;
+$golden-yellow: #FFD700;
+$cream-white: #FDF5E6;
+$ivory: #FFFFF0;
+$red-orange: #FF4500;
+$light-teal: #20B2AA;
+
 $white: #ffffff;
 $black: #000000;
 $gray-50: #f9fafb;
@@ -100,6 +109,11 @@ body {
   &.dark {
     color: $white;
     background-color: $gray-900;
+  }
+
+  &.teal-coral {
+    color: $gray-900;
+    background-color: $cream-white;
   }
 }
 
@@ -217,6 +231,14 @@ button {
     &:hover {
       background: linear-gradient(to right, $secondary-brown, $primary-brown);
     }
+
+    .teal-coral & {
+      background: linear-gradient(to right, $teal-blue, $coral-orange);
+
+      &:hover {
+        background: linear-gradient(to right, $coral-orange, $teal-blue);
+      }
+    }
   }
 
   &.btn-secondary {
@@ -225,6 +247,16 @@ button {
 
     &:hover {
       background-color: $accent-pink-hover;
+    }
+
+    .teal-coral & {
+      background-color: $golden-yellow;
+      color: $gray-900;
+
+      &:hover {
+        background-color: $red-orange;
+        color: $white;
+      }
     }
   }
 
@@ -236,6 +268,16 @@ button {
     &:hover {
       background-color: $primary-brown;
       color: $white;
+    }
+
+    .teal-coral & {
+      border: 2px solid $teal-blue;
+      color: $teal-blue;
+
+      &:hover {
+        background-color: $teal-blue;
+        color: $white;
+      }
     }
   }
 
@@ -265,6 +307,11 @@ button {
   .dark & {
     background-color: $gray-800;
   }
+
+  .teal-coral & {
+    background-color: $ivory;
+    border: 2px solid rgba(0, 128, 128, 0.1);
+  }
 }
 
 // Layout components
@@ -274,6 +321,10 @@ button {
 
   .dark & {
     background: linear-gradient(to bottom right, $gray-900, $gray-800, $gray-900);
+  }
+
+  .teal-coral & {
+    background: linear-gradient(to bottom right, $cream-white, $ivory, rgba(255, 215, 0, 0.1));
   }
 }
 
@@ -292,6 +343,12 @@ button {
     background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(55, 65, 81, 0.95));
     border-bottom: 2px solid rgba(255, 182, 193, 0.2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .teal-coral & {
+    background: linear-gradient(135deg, rgba(253, 245, 230, 0.95), rgba(255, 255, 240, 0.95));
+    border-bottom: 2px solid rgba(0, 128, 128, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 128, 128, 0.15);
   }
 
   .nav-content {
@@ -321,15 +378,15 @@ button {
     }
 
     .logo-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: linear-gradient(135deg, $bakery-brown, $secondary-brown);
+      width: 3.5rem;
+      height: 3.5rem;
+      // border-radius: 50%;
+      // background: linear-gradient(135deg, $bakery-brown, $secondary-brown);
       @include flex-center;
       color: $white;
       font-weight: 800;
       font-size: 1.25rem;
-      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+      // box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
       &:hover {
@@ -337,18 +394,27 @@ button {
       }
 
       .dark & {
-        background: linear-gradient(135deg, $bakery-pink, #ff9a9e);
-        box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
+        // background: linear-gradient(135deg, $bakery-pink, #ff9a9e);
+        // box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
 
         &:hover {
           box-shadow: 0 8px 25px rgba(255, 182, 193, 0.5);
         }
       }
 
+      .teal-coral & {
+        background: linear-gradient(135deg, $teal-blue, $light-teal);
+        box-shadow: 0 6px 20px rgba(0, 128, 128, 0.3);
+
+        &:hover {
+          box-shadow: 0 8px 25px rgba(0, 128, 128, 0.5);
+        }
+      }
+
       .logo-image {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
+        // border-radius: 50%;
         object-fit: cover;
         object-position: center;
       }
@@ -372,6 +438,12 @@ button {
 
         .dark & {
           background: linear-gradient(135deg, $bakery-pink, #ff9a9e);
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+
+        .teal-coral & {
+          background: linear-gradient(135deg, $teal-blue, $coral-orange);
           -webkit-background-clip: text;
           background-clip: text;
         }
@@ -434,6 +506,11 @@ button {
           background: linear-gradient(135deg, $bakery-pink, #ff9a9e);
           box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
         }
+
+        .teal-coral & {
+          background: linear-gradient(135deg, $coral-orange, $red-orange);
+          box-shadow: 0 6px 20px rgba(255, 127, 80, 0.3);
+        }
       }
 
       &:not(.active) {
@@ -455,6 +532,12 @@ button {
             background: rgba(255, 182, 193, 0.1);
             color: $bakery-pink;
             box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+          }
+
+          .teal-coral & {
+            background: rgba(0, 128, 128, 0.1);
+            color: $teal-blue;
+            box-shadow: 0 4px 15px rgba(0, 128, 128, 0.2);
           }
         }
       }
@@ -762,19 +845,19 @@ button {
       width: 8rem;
       height: 8rem;
       margin: 0 auto 2rem;
-      border-radius: 50%;
-      background: linear-gradient(to right, $primary-brown, #d97706);
+      // border-radius: 50%;
+      // background: linear-gradient(to right, $primary-brown, #d97706);
       @include flex-center;
       color: $white;
       font-weight: bold;
       font-size: 2.5rem;
-      @include card-shadow;
+      // @include card-shadow;
       animation: float 3s ease-in-out infinite;
 
       .hero-logo-image {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
+        // border-radius: 50%;
         object-fit: cover;
         object-position: center;
       }
@@ -807,6 +890,10 @@ button {
         color: $bakery-pink;
       }
 
+      .teal-coral & {
+        color: $coral-orange;
+      }
+
       @include responsive(tablet) {
         font-size: 1.5rem;
       }
@@ -821,6 +908,10 @@ button {
 
       .dark & {
         color: $gray-300;
+      }
+
+      .teal-coral & {
+        color: $gray-700;
       }
     }
 
@@ -907,6 +998,10 @@ button {
       .dark & {
         color: $bakery-pink;
       }
+
+      .teal-coral & {
+        color: $teal-blue;
+      }
     }
 
     .stat-label {
@@ -915,6 +1010,10 @@ button {
 
       .dark & {
         color: $gray-400;
+      }
+
+      .teal-coral & {
+        color: $gray-600;
       }
     }
   }
@@ -944,6 +1043,10 @@ button {
 
       .dark & {
         color: $gray-300;
+      }
+
+      .teal-coral & {
+        color: $gray-700;
       }
     }
   }
@@ -986,6 +1089,10 @@ button {
           color: $white;
         }
 
+        .teal-coral & {
+          color: $gray-900;
+        }
+
         &:hover {
           color: $primary-brown;
         }
@@ -999,6 +1106,10 @@ button {
 
         .dark & {
           color: $gray-300;
+        }
+
+        .teal-coral & {
+          color: $gray-700;
         }
       }
 
@@ -1057,8 +1168,8 @@ button {
         .logo-icon {
           width: 3rem;
           height: 3rem;
-          border-radius: 50%;
-          background-color: $bakery-pink;
+          // border-radius: 50%;
+          // background-color: $bakery-pink;
           @include flex-center;
           font-weight: bold;
           font-size: 1.25rem;
@@ -1066,7 +1177,7 @@ button {
           .logo-image {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            // border-radius: 50%;
             object-fit: cover;
             object-position: center;
           }
@@ -1628,6 +1739,10 @@ button {
 
             .dark & {
               color: $gray-300;
+
+            .teal-coral & {
+              color: $gray-700;
+            }
             }
           }
         }

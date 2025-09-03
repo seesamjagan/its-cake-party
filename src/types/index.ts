@@ -35,9 +35,13 @@ export interface CartContextType {
   getCartItemsCount: () => number;
 }
 
+export type ThemeMode = 'light' | 'dark' | 'teal-coral';
+
 export interface ThemeContextType {
   isDark: boolean;
+  currentTheme: ThemeMode;
   toggleTheme: () => void;
+  setTheme: (theme: ThemeMode) => void;
 }
 
 export interface CartAction {
